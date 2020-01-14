@@ -3,5 +3,8 @@ from wpilib.command import Command
 from commandbased import CommandBasedRobot
 
 class Robot(CommandBasedRobot):
-    def __init__:
-        
+    ''' Statement of commands '''
+
+if __name__ == "__main__":
+    wpilib.run(Robot)
+    
