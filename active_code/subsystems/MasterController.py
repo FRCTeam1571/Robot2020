@@ -10,8 +10,8 @@ class MasterController(Subsystem):
         self.controller = wpilib.XboxController(0)
 
         # Sides
-        self.kLeft = self.controller.Hand.kLeft()
-        self.kRight = self.controller.Hand.kRight()
+        self.kLeft = self.controller.Hand.kLeft
+        self.kRight = self.controller.Hand.kRight
 
         # Triggers
         self.trigLeft = 0.0
@@ -44,11 +44,11 @@ class MasterController(Subsystem):
         self.SpeedUpButton = self.controller.getAButtonPressed()
         self.SpeedDownButton = self.controller.getBButtonPressed()
 
-        if (self.SpeedDownButton = True and self.speedIndex > 0):
-            self.speedIndex--
+        if (self.SpeedDownButton == True and self.speedIndex > 0):
+            self.speedIndex -= 1
         
-        if (self.SpeedUpButton = True and self.speedIndex < len(self.speedIndex)):
-            self.speedIndex++
+        if (self.SpeedUpButton == True and self.speedIndex < len(self.speedArray)):
+            self.speedIndex += 1
 
         self.speedMultiplier = self.speedArray[self.speedIndex]
 
@@ -58,3 +58,19 @@ class MasterController(Subsystem):
         #Call this method to get status of controller
         readSpeedMultiplier()
         readStick()
+
+    def getLeftStick_x():
+        return self.leftstick_x
+
+    def getTrigLeft():
+        return self.trigLeft
+
+    def getTrigRight():
+        return self.trigRight
+
+    def getSpeed():
+        return self.speed
+
+    def getSpeedMultiplier():
+        return self.speedMultiplier
+    
