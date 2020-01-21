@@ -11,13 +11,13 @@ class DriveTrain(Subsystem):
         super().__init__("DriveTrain")
 
         # Front Motor Controllers
-        self.front_cont_right = ctre.WPI_TalonSRX(2)
-        self.rear_cont_right = ctre.WPI_TalonSRX(3)
+        self.front_cont_right = ctre.WPI_TalonSRX(7)
+        self.rear_cont_right = ctre.WPI_TalonSRX(6)
         self.right = wpilib.SpeedControllerGroup(self.front_cont_right, self.rear_cont_right)
 
         # Rear Motor Controllers
-        self.front_cont_left = ctre.WPI_TalonSRX(0)
-        self.rear_cont_left = ctre.WPI_TalonSRX(1)
+        self.front_cont_left = ctre.WPI_TalonSRX(5)
+        self.rear_cont_left = ctre.WPI_TalonSRX(4)
         self.left = wpilib.SpeedControllerGroup(self.front_cont_left, self.rear_cont_left)
         
         # Drive Type

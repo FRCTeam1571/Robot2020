@@ -5,8 +5,11 @@ from wpilib.command.subsystem import Subsystem
 from networktables import NetworkTables
 from wpilib.smartdashboard import SmartDashboard
 
+from commands import drive
+
 class MasterController(Subsystem):
     def __init__(self):
+        self.previous = 0.0
         self.controller = wpilib.XboxController(0)
 
         # Sides
@@ -26,10 +29,12 @@ class MasterController(Subsystem):
         #Speed Multiplier Button
         self.speedUpButton = False
         self.speedDownButton = False
-        self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+        # Half speed to max speed
+        self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0] 
         self.speedIndex = 4
 
-    def readStick():
+
+    def readStick(self):
         #Get the values for the triggers and stick for basic driving
         self.trigLeft = self.controller.getTriggerAxis(self.kLeft)
         self.trigRight = self.controller.getTriggerAxis(self.kRight)
@@ -37,40 +42,56 @@ class MasterController(Subsystem):
 
         self.leftstick_x = self.controller.getX(self.kLeft) * self.speedMultiplier
 
-
-
-    def readSpeedMultiplier():
+    def readSpeedMultiplier(self):
         # Get speed up and down buttons to increase or decrease the speed for the drivetrain
         self.SpeedUpButton = self.controller.getAButtonPressed()
         self.SpeedDownButton = self.controller.getBButtonPressed()
 
         if (self.SpeedDownButton == True and self.speedIndex > 0):
+            print("Up one")
             self.speedIndex -= 1
         
-        if (self.SpeedUpButton == True and self.speedIndex < len(self.speedArray)):
+        elif (self.SpeedUpButton == True and self.speedIndex < len(self.speedArray)):
+            print("Down one")
             self.speedIndex += 1
+
+            if (self.SpeedUpButton == True and self.speedIndex >= 5):
+                self.speedIndex = 5
 
         self.speedMultiplier = self.speedArray[self.speedIndex]
 
-        SmartDashboard.putData("Speed Multiplier", self.speedMultiplier)
+        SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
 
-    def readController():
+    def readController(self):
         #Call this method to get status of controller
-        readSpeedMultiplier()
-        readStick()
+        self.readSpeedMultiplier()
+        self.readStick()
 
-    def getLeftStick_x():
+    def getLeftStick_x(self):
+        print(self.leftstick_x)
         return self.leftstick_x
 
-    def getTrigLeft():
+    def getTrigLeft(self):
+        print("Left Trigger", self.trigLeft)
         return self.trigLeft
 
-    def getTrigRight():
+    def getTrigRight(self):
+        print("Right Trigger", self.trigRight)
         return self.trigRight
 
-    def getSpeed():
+    def getSpeed(self):
+        previous = self.speed 
+        if (self.speed != previous):
+            pass
+        else:
+            print("Speed", self.speed)
         return self.speed
+        # get smartdashboard working k thanks
+        # big oof
 
-    def getSpeedMultiplier():
+
+        #yw
+    def getSpeedMultiplier(self):
+        print(self.speedMultiplier)
         return self.speedMultiplier
     
