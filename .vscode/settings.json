@@ -4,5 +4,6 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "python.pythonPath": "C:\\Users\\FRC\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
 }

@@ -13,6 +13,8 @@ class Robot(CommandBasedRobot):
 
         Command.getRobot = lambda x=0: self
 
+        
+
     def autonomousInit(self):
         # add later
         print("Autonomous")
