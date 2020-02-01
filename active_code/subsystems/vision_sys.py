@@ -1,8 +1,10 @@
 import wpilib 
+from wpilib.command import command
 from rev.color import ColorSensorV3
 
-class Sensor(self):
+class Sensor(Subsystem):
     def __init__(self):
+        Subsystem.__init__(self)
         # Object for the color sensor
         self.colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
 
@@ -14,14 +16,11 @@ class Sensor(self):
         wpilib.SmartDashboard.putNumber("Green", getGreen())
         wpilib.SmartDashboard.putNumber("Blue", getBlue())
         
-
     def getProx(self):
-        self.proximity = self.colorSensor.getProximity()
-        return self.proximity
+        return self.colorSensor.getProximity()
 
     def getIR(self):
-        self.ir = self.colorSensor.getProximity()
-        return self.ir
+        return self.colorSensor.getProximity()
 
     def getBlue(self):
         return self.getSensorColor().blue

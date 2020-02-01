@@ -6,8 +6,7 @@ from subsystems import MasterController
 
 class Drive(Command):
     def __init__(self):
-        # 
-        super().__init__("Drive")
+        Command.__init__(self)
         # self.controller = MasterController()
         # self.driveTrain = DriveTrain()
         self.requires(self.getRobot().driveTrain)

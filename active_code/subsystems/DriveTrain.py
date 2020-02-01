@@ -8,7 +8,7 @@ from commands.drive import Drive
 class DriveTrain(Subsystem):
     def __init__(self):
         # Ensures a single-time initialization
-        super().__init__("DriveTrain")
+        Subsystem.__init__(self)
 
         # Front Motor Controllers
         self.front_cont_right = ctre.WPI_TalonSRX(7)
