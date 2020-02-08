@@ -1,9 +1,8 @@
 import wpilib
 
 from wpilib.drive import DifferentialDrive
-from wpilib.command.subsystem import Subsystem
+from wpilib.command import Subsystem
 import ctre
-from commands.drive import Drive
 
 class DriveTrain(Subsystem):
     def __init__(self):
@@ -25,7 +24,7 @@ class DriveTrain(Subsystem):
 
     def initDefaultCommand(self):
         # self.driveCommand = Drive.Drive()
-        self.setDefaultCommand(Drive())
+        self.setDefaultCommand(DifferentialDrive)
 
     def engageDrive(self, speed, rotation):
         self.drive.arcadeDrive(speed, rotation)

@@ -1,11 +1,8 @@
 import wpilib
 import ctre
 
-from wpilib.command.subsystem import Subsystem
+from wpilib.command import Subsystem
 from networktables import NetworkTables
-from wpilib.smartdashboard import SmartDashboard
-
-from commands import drive
 
 class MasterController(Subsystem):
     def __init__(self):
@@ -61,7 +58,7 @@ class MasterController(Subsystem):
 
         self.speedMultiplier = self.speedArray[self.speedIndex]
 
-        SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
+        wpilib.SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
 
     def readController(self):
         #Call this method to get status of controller

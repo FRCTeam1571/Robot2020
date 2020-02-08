@@ -1,5 +1,6 @@
 import wpilib 
-from wpilib.command import command
+from wpilib.command import Command
+from wpilib.command import Subsystem
 from rev.color import ColorSensorV3
 
 class Sensor(Subsystem):
