@@ -6,6 +6,7 @@ from networktables import NetworkTables
 from wpilib.smartdashboard import SmartDashboard
 
 from commands import drive
+from commands import mathRotate
 
 class MasterController(Subsystem):
     def __init__(self):
@@ -33,6 +34,10 @@ class MasterController(Subsystem):
         # Half speed to max speed
         self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0] 
         self.speedIndex = 4
+
+        #Color rotate buttons
+        self.mathSpinButton = False
+        self.colorSpinButton = False
 
 
     def readStick(self):
@@ -63,10 +68,23 @@ class MasterController(Subsystem):
 
         SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
 
+    def readColorButtons(self):
+        #read the values of the x and y buttons
+        self.mathSpinButton = self.controller.getXButtonPressed()
+        self.colorSpinButton = self.controller.getYButtonPressed()
+
+        if (self.mathSpinButton):
+            rotateCom = mathRotate()
+            rotateCom.execute()
+        if (self.colorSpinButton):
+            rotateCom = colecommand()
+            rotateCom.execute()
+
     def readController(self):
         #Call this method to get status of controller
         self.readSpeedMultiplier()
         self.readStick()
+        self.readColorButtons()
 
     def getLeftStick_x(self):
         print(self.leftstick_x)
@@ -95,4 +113,12 @@ class MasterController(Subsystem):
     def getSpeedMultiplier(self):
         print(self.speedMultiplier)
         return self.speedMultiplier
+
+    def getYButton(self):
+        print(self.colorSpinButton)
+        return self.colorSpinButton
+    
+    def getXButton(self):
+        print(self.mathSpinButton)
+        return self.mathSpinButton
     
