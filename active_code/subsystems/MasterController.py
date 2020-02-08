@@ -1,11 +1,10 @@
 import wpilib
 import ctre
 
-from wpilib.command.subsystem import Subsystem
+from wpilib.command import Subsystem
 from networktables import NetworkTables
 from wpilib.smartdashboard import SmartDashboard
 
-from commands import drive
 from commands import mathRotate
 
 class MasterController(Subsystem):
@@ -30,9 +29,9 @@ class MasterController(Subsystem):
         #Speed Multiplier Button
         self.speedUpButton = False
         self.speedDownButton = False
-        
+
         # Half speed to max speed
-        self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0] 
+        self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
         self.speedIndex = 4
 
         #Color rotate buttons
@@ -56,7 +55,7 @@ class MasterController(Subsystem):
         if (self.SpeedDownButton == True and self.speedIndex > 0):
             print("Up one")
             self.speedIndex -= 1
-        
+
         elif (self.SpeedUpButton == True and self.speedIndex < len(self.speedArray)):
             print("Down one")
             self.speedIndex += 1
@@ -66,7 +65,7 @@ class MasterController(Subsystem):
 
         self.speedMultiplier = self.speedArray[self.speedIndex]
 
-        SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
+        wpilib.SmartDashboard.putNumber("Speed Multiplier", self.speedMultiplier)
 
     def readColorButtons(self):
         #read the values of the x and y buttons
@@ -99,7 +98,7 @@ class MasterController(Subsystem):
         return self.trigRight
 
     def getSpeed(self):
-        previous = self.speed 
+        previous = self.speed
         if (self.speed != previous):
             pass
         else:
@@ -117,8 +116,7 @@ class MasterController(Subsystem):
     def getYButton(self):
         print(self.colorSpinButton)
         return self.colorSpinButton
-    
+
     def getXButton(self):
         print(self.mathSpinButton)
         return self.mathSpinButton
-    
