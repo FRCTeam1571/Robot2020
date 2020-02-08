@@ -10,13 +10,18 @@ from adis16470 import ADIS16470CalibrationTime
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        # self.controller = MasterController()
-        # self.driveTrain = DriveTrain()
+        self.controller = MasterController()
+        self.driveTrain = DriveTrain()
+        self.colorSpinner = ColorSpinner(
+        # self.motor = wpilib.NidecBrushless(0, 0)
 
         # Command.getRobot = lambda x=0: self
         self.gyro = ADIS16470_IMU()
         self.m_imu.GetAngle()
 
+
+        Command.getRobot = lambda x=0: self
+        
     def autonomousInit(self):
         # add later
         print("Autonomous")
