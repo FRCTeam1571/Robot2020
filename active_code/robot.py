@@ -10,11 +10,11 @@ class Robot(CommandBasedRobot):
     def robotInit(self):
         self.controller = MasterController()
         self.driveTrain = DriveTrain()
+        self.colorSpinner = ColorSpinner(
+        # self.motor = wpilib.NidecBrushless(0, 0)
 
         Command.getRobot = lambda x=0: self
-
         
-
     def autonomousInit(self):
         # add later
         print("Autonomous")

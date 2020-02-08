@@ -29,6 +29,7 @@ class MasterController(Subsystem):
         #Speed Multiplier Button
         self.speedUpButton = False
         self.speedDownButton = False
+        
         # Half speed to max speed
         self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0] 
         self.speedIndex = 4
