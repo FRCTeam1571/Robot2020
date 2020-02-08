@@ -9,12 +9,12 @@ class Sensor(Subsystem):
         self.colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
 
     # Function to print value of various properties of the color sensor
-    def toDash(self):
+    '''def toDash(self):
         wpilib.SmartDashboard.putNumber("Proximity", proximity)
         wpilib.SmartDashboard.putNumber("IR", ir)
         wpilib.SmartDashboard.putNumber("Red", getRed())
         wpilib.SmartDashboard.putNumber("Green", getGreen())
-        wpilib.SmartDashboard.putNumber("Blue", getBlue())
+        wpilib.SmartDashboard.putNumber("Blue", getBlue())'''
         
     def getProx(self):
         return self.colorSensor.getProximity()
@@ -32,8 +32,7 @@ class Sensor(Subsystem):
         return self.getSensorColor().red
 
     def getYellow(self):
-        return self.getSensorColor().yellow
-        
+        return self.getSensorColor().yellow   
 
     def getSensorColor(self):
         self.detectedColor = self.colorSensor.getColor
