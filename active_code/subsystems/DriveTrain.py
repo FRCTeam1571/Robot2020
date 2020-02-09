@@ -2,12 +2,13 @@ import wpilib
 
 from wpilib.drive import DifferentialDrive
 from wpilib.command import Subsystem
+from commands import drive
 import ctre
 
 class DriveTrain(Subsystem):
     def __init__(self):
         # Ensures a single-time initialization
-        Subsystem.__init__(self)
+        Subsystem.__init__(self, "DriveTrain")
 
         # Front Motor Controllers
         self.front_cont_right = ctre.WPI_TalonSRX(7)
@@ -24,7 +25,10 @@ class DriveTrain(Subsystem):
 
     def initDefaultCommand(self):
         # self.driveCommand = Drive.Drive()
-        self.setDefaultCommand(DifferentialDrive)
+        try:        
+            self.setDefaultCommand(drive.Drive)
+        except TypeError:
+            print("Error for drive")
 
     def engageDrive(self, speed, rotation):
         self.drive.arcadeDrive(speed, rotation)

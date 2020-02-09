@@ -1,8 +1,8 @@
 from wpilib.command import Command
 
-from wpilib.command.waitcommand import WaitCommand
-from subsystems import DriveTrain
-from subsystems import MasterController
+from wpilib.command import WaitCommand
+#from subsystems import DriveTrain
+#from subsystems import MasterController
 
 class Drive(Command):
     def __init__(self):

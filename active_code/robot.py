@@ -5,7 +5,8 @@ from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
 
-from ColorSpinner import ColorSpinner
+import subsystems
+from subsystems import ColorSpinner
 #from adis16470 import ADIS16470_IMU
 #from adis16470 import ADIS16470CalibrationTime
 
@@ -14,7 +15,7 @@ class Robot(CommandBasedRobot):
     def robotInit(self):
         self.controller = MasterController()
         self.driveTrain = DriveTrain()
-        self.colorSpinner = ColorSpinner()
+        self.colorSpinner = ColorSpinner
         # self.motor = wpilib.NidecBrushless(0, 0)
 
         # Command.getRobot = lambda x=0: self

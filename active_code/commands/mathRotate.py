@@ -2,11 +2,11 @@ import wpilib
 
 from wpilib.command import TimedCommand
 
-from Subsystems import MasterController
-from Subsystems import ColorSpinner
+# from subsystems import MasterController
+# from subsystems import ColorSpinner
 
 class mathRotate(TimedCommand):
-    def __init__(self, "mathRotate", 6.0):
+    def __init__(self, mathRotate = "mathRotate", timeInSeconds = 6.0):
 
         # self.requires(self.getRobot().ColorSpinner)
         """RPM = 475 so send 1 amp on the PWM
@@ -18,7 +18,7 @@ class mathRotate(TimedCommand):
         #move to new command
         run = self.getRobot().controller.getYbutton()
 
-        value = self.getRobot().colorSpinner.function()
+        self.Robot().ColorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
 
 

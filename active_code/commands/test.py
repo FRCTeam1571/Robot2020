@@ -1,4 +1,4 @@
-from wpilib.command.commandgroup import CommandGroup
+from wpilib.command import CommandGroup
 
 ''' class TestCommand(CommandGroup):
     def __init__(self):

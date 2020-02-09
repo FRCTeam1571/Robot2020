@@ -1,6 +1,7 @@
 import wpilib
 from wpilib.command import Command
-from subsystems import vision_sys as vs
+#from subsystems import vision_sys as vs
+#from vision_sys import vs 
 
 class ColorSensorV3(Command):
     def __init__(self):
