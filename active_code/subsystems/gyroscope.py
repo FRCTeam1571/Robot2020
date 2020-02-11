@@ -7,6 +7,11 @@ from wpilib.smartdashboard import SmartDashboard
 from adis16470 import ADIS16470_IMU
 from adis16470 import ADIS16470CalibrationTime
 
+kautoname_default = "Default"
+kautoname_custom = "My Auto"
+kYaw_default = "Z-Axis"
+kYaw_xaxis = "X-Axis"
+kYaw_yAxis = "Y-Axis"
 
 class Gyroscope(Subsystem):
     def __init__(self):
@@ -15,15 +20,12 @@ class Gyroscope(Subsystem):
         # Default values
 
         self.gyro = ADIS16470_IMU()
+        self.m_yawSelected = self.kYaw_default
+        self.m_runCal = False
+        self.m_configCal = False
+        self.m_reset = False
 
-        self.autoName_default = "Default"
-        self.autoName_custom = "My Auto"
-        self.kYawDefault = 0.0 # Z-Axis
-        self.kYawXAxis = 0.0
-        self.kYawYAxis = 0.0
-        
-        
-        self.gyro.m_yawSelected = self.kYawDefault
+        self.m_yawActiveAxis = self.gyro.kz
 
 
         # No clue yet of what this is 
@@ -34,7 +36,7 @@ class Gyroscope(Subsystem):
         # self.iidk = m_yawchooser.AddOption(kYawXAxis, kYawXAxis)
 
         # SmartDashBoard Statistics
-        SmartDashboard.putData("Auto Modes", )
+        wpilib.SmartDashBoard.putBoolean
         '''
         plan:
         [] 1. Get the x-axis reading. it's ok to look up what you need!
