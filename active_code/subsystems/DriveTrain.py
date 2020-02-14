@@ -22,6 +22,7 @@ class DriveTrain(Subsystem):
         
         # Drive Type
         self.drive = DifferentialDrive(self.left, self.right)
+        self.drive.setExpiration(0.1) 
 
     def initDefaultCommand(self):
         # self.driveCommand = Drive.Drive()
