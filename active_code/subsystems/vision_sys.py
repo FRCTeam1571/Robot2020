@@ -5,7 +5,7 @@ from rev.color import ColorSensorV3
 
 class Sensor(Subsystem):
     def __init__(self):
-        Subsystem.__init__(self) , "Sensor"
+        Subsystem.__init__(self, "Sensor")
         # Object for the color sensor
         self.colorSensor = ColorSensorV3(wpilib.I2C.Port.kOnboard)
 
