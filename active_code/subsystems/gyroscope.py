@@ -1,6 +1,7 @@
 import wpilib
 
-from wpilib.command import Command
+#from wpilib.command import Command
+from wpilib.command import Subsystem
 from wpilib.gyrobase import GyroBase
 from wpilib.analoggyro import AnalogGyro
 from wpilib.smartdashboard import SmartDashboard
@@ -16,7 +17,7 @@ kYaw_yAxis = "Y-Axis"
 class Gyroscope(Subsystem):
     def __init__(self):
         # Single Time Initialization
-        Subsystem.__init__(self)
+        Subsystem.__init__(self, "Gyroscope")
         # Default values
 
         self.gyro = ADIS16470_IMU()
@@ -36,7 +37,7 @@ class Gyroscope(Subsystem):
         # self.iidk = m_yawchooser.AddOption(kYawXAxis, kYawXAxis)
 
         # SmartDashBoard Statistics
-        wpilib.SmartDashBoard.putBoolean
+        wpilib.SmartDashBoard.putBoolean(false, "gyro status")
         '''
         plan:
         [] 1. Get the x-axis reading. it's ok to look up what you need!

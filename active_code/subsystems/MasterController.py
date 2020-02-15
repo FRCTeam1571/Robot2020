@@ -9,6 +9,7 @@ from wpilib import SmartDashboard
 
 class MasterController(Subsystem):
     def __init__(self):
+        Subsystem.__init__(self, "MasterController")
         self.previous = 0.0
         self.controller = wpilib.XboxController(0)
 
@@ -96,8 +97,7 @@ class MasterController(Subsystem):
     def getTrigRight(self):
         print("Right Trigger", self.trigRight)
         return self.trigRight
-
-    def getSpeed(self):
+    '''def getSpeed(self):
         previous = self.speed
         if (self.speed != previous):
             pass
@@ -105,7 +105,7 @@ class MasterController(Subsystem):
             print("Speed", self.speed)
         return self.speed
         # get smartdashboard working k thanks
-        # big oof
+        # big oof'''
 
 
         #yw
