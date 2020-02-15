@@ -47,7 +47,7 @@ class Gyroscope(Subsystem):
             wpilib.SmartDashboard.putNumber("X Comp Angle", self.m_imu.getXComplimentaryAngle())
             wpilib.SmartDashboard.putNumber("Y Comp Angle", self.m_imu.getYComplimentaryAngle())
             
-            self.m_yawSelected = kYawDefault
+            self.m_yawSelected = kYaw_default
 
             # Set IMU Settings
 
@@ -66,10 +66,10 @@ class Gyroscope(Subsystem):
             # Read the Axis you want to read
             # Sendable Chooser allows you to change the value, hence changing what is displayed.
 
-            if (self.m_yawSelected == "X-Axis")
+            if (self.m_yawSelected == "X-Axis"):
                 self.m_yawActiveAxis = self.m_imu.IMUAxis.kX
             
-            elif (self.m_yawSelected == "Y-Axis")
+            elif (self.m_yawSelected == "Y-Axis"):
                 self.m_yawActiveAxis = self.m_imu.IMUAxis.kY
                 
             else: 
@@ -79,7 +79,7 @@ class Gyroscope(Subsystem):
             if (self.m_setYawAxis):
                 self.m_setYawAxis = wpilib.SmartDashboard.putBoolean("setYawAxis", False)
                 
-        '''
+        """
         plan:
         [] 1. Get the x-axis reading. it's ok to look up what you need!
         [] 2. Get it into smartdashboard/console print
@@ -91,4 +91,4 @@ class Gyroscope(Subsystem):
             [] say what angle the robot is facing
             [] show how fast the robot is going.
 
-        ''' 
+        """

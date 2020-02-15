@@ -13,6 +13,10 @@ class MasterController(Subsystem):
         self.previous = 0.0
         self.controller = wpilib.XboxController(0)
 
+        # self.controller.Button()
+        # self.xButton = wpilib.Button()
+        # wpilib.JoystickButton()
+
         # Sides
         self.kLeft = self.controller.Hand.kLeftHand
         self.kRight = self.controller.Hand.kRightHand
@@ -47,6 +51,10 @@ class MasterController(Subsystem):
         self.speed = (self.trigRight - self.trigLeft) * self.speedMultiplier
 
         self.leftstick_x = self.controller.getX(self.kLeft) * self.speedMultiplier
+    
+    def checkDrive(self):
+        if (self.trigRight > 0) or (self.trigLeft > 0):
+            self.drive = drive.execute()
 
     def readSpeedMultiplier(self):
         # Get speed up and down buttons to increase or decrease the speed for the drivetrain
@@ -85,6 +93,7 @@ class MasterController(Subsystem):
         self.readSpeedMultiplier()
         self.readStick()
         self.readColorButtons()
+        self.checkDrive()
 
     def getLeftStick_x(self):
         print(self.leftstick_x)

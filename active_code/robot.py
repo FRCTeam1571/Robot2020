@@ -4,6 +4,7 @@ from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
+from commands import colorWheel as cW
 
 import subsystems
 from subsystems.ColorSpinner import ColorSpinner
@@ -15,7 +16,7 @@ class Robot(CommandBasedRobot):
     def robotInit(self):
         self.controller = MasterController()
         self.driveTrain = DriveTrain()
-        self.colorSpinner = ColorSpinner()
+        #self.colorSpinner = ColorSpinner()
         #self.motor = wpilib.NidecBrushless(0, 0)
 
         # Command.getRobot = lambda x=0: self
@@ -64,7 +65,6 @@ class Robot(CommandBasedRobot):
         if self.timer.hasPeriodPassed(2) :
             print("Test Run")
 
-
     def teleopInit(self):
         # add later
         print("Teleop Mode")
@@ -73,15 +73,19 @@ class Robot(CommandBasedRobot):
         # add later
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
+
+        self.controller.readController()
+
+        #call a command to run other commands after checking the controller
+        # cW.colorWheel
             
-        spin = self.controller.getYButton()
-        if (spin == True) :
-            self.colorSpinner.engageMotor()
-        else :
-            self.colorSpinner.engageMotor(0)
+        #Turn on motor while Y is pressed
+        # spin = self.controller.getYButton()
+        # if (spin == True) :
+        #     self.colorSpinner.engageMotor()
+        # else :
+        #     self.colorSpinner.engageMotor(0)
 
 
 if __name__ == "__main__":
     wpilib.run(Robot)
-    
-

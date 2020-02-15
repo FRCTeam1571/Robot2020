@@ -24,6 +24,9 @@ class DriveTrain(Subsystem):
         self.drive = DifferentialDrive(self.left, self.right)
         self.drive.setExpiration(0.1) 
 
+        # 
+        self.drive.setSafetyEnabled(False)
+
     def initDefaultCommand(self):
         # self.driveCommand = Drive.Drive()
         try:        
