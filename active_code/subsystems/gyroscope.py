@@ -2,11 +2,10 @@ import wpilib
 
 #from wpilib.command import Command
 from wpilib.command import Subsystem
-from wpilib.gyrobase import GyroBase
-from wpilib.analoggyro import AnalogGyro
-from wpilib.smartdashboard import SmartDashboard
-from adis16470 import ADIS16470_IMU
-from adis16470 import ADIS16470CalibrationTime
+from wpilib import GyroBase
+from wpilib import AnalogGyro
+from wpilib import SmartDashboard
+from gyroscope import ADIS16470_IMU
 
 kautoname_default = "Default"
 kautoname_custom = "My Auto"
@@ -37,7 +36,7 @@ class Gyroscope(Subsystem):
         # self.iidk = m_yawchooser.AddOption(kYawXAxis, kYawXAxis)
 
         # SmartDashBoard Statistics
-        wpilib.SmartDashBoard.putBoolean(false, "gyro status")
+        wpilib.SmartDashboard.putBoolean(False, "gyro status")
         '''
         plan:
         [] 1. Get the x-axis reading. it's ok to look up what you need!
