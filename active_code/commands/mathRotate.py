@@ -16,9 +16,12 @@ class mathRotate(TimedCommand):
         robot = self.getrobot()
 
         #move to new command
-        run = self.getRobot().controller.getYbutton()
+        
+        self.getRobot().controller.readController()
+        run = self.getRobot().controller.getXbutton()
 
-        self.Robot().ColorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
+        if (run):
+            self.Robot().ColorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
 
 

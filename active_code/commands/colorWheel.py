@@ -13,6 +13,6 @@ class colorWheel(Command):
 
         # colorPressed = self.getRobot().colorSpinner.getYButton()
 
-        # if (mathPressed):
-        #     mathRotate()
+        if (mathPressed):
+            mathRotate()
 
