@@ -5,6 +5,7 @@ from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
 from commands import colorWheel as cW
+from commands import paraCommandGr as paraCommandGr
 
 import subsystems
 from subsystems.ColorSpinner import ColorSpinner
@@ -15,9 +16,8 @@ class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
         self.controller = MasterController()
-        self.driveTrain = DriveTrain()
-        #self.colorSpinner = ColorSpinner()
-        #self.motor = wpilib.NidecBrushless(0, 0)
+        #self.driveTrain = DriveTrain()
+        self.colorSpinner = ColorSpinner()
 
         # Command.getRobot = lambda x=0: self
         #self.gyro = ADIS16470_IMU()
@@ -27,6 +27,9 @@ class Robot(CommandBasedRobot):
         Command.getRobot = lambda x=0: self
 
         self.timer = wpilib.Timer() 
+
+        self.autonomousCommand = sampCommand()
+        self.oi = oi();
 
 
     def robotPeriodic(self):
@@ -41,11 +44,16 @@ class Robot(CommandBasedRobot):
     def autonomousInit(self):
         # add later
         print("Autonomous Mode")
+        if (self.autonomousCommand != null) : 
+            self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
-        # add later
         if self.timer.hasPeriodPassed(2) :
             print("Autonomous Run")
+        
+        self.scheduler.addCommand(paraCommandGr()) 
+        self.scheduler.run()
+
 
     def disabledInit(self):
         # add later
@@ -74,14 +82,16 @@ class Robot(CommandBasedRobot):
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
 
-        self.controller.readController()
+         self.controller.readController()
 
         #call a command to run other commands after checking the controller
-        # cW.colorWheel
+        # wheel = cW.colorWheel()
+        # wheel.execute()
+        
             
         #Turn on motor while Y is pressed
         # spin = self.controller.getYButton()
-        # if (spin == True) :
+        # if (spin):
         #     self.colorSpinner.engageMotor()
         # else :
         #     self.colorSpinner.engageMotor(0)

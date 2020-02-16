@@ -1,7 +1,7 @@
 import wpilib
 
 from wpilib.command import Command
-from subsystems import MasterController
+# from subsystems.MasterController import MasterController
 from commands import mathRotate
 from commands import readColor
 
@@ -12,11 +12,12 @@ class colorWheel(Command):
     def execute(self):
         robot = self.getRobot()
 
-        mathPressed = self.getRobot().colorSpinner.getXButton()
+        mathPressed = self.getRobot().controller.getXButton()
 
-        colorPressed = self.getRobot().colorSpinner.getYButton()
+        colorPressed = self.getRobot().controller.getYButton()
 
         if (mathPressed):
+            print("Rotation")
             mathRotate.mathRotate
 
 
