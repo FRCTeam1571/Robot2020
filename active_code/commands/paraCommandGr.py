@@ -1,23 +1,11 @@
-from wpilib.command import Command
 from wpilib.command import GroupCommand
+from commands import sampCommand, testCommand, instaCommand
 
 class paraCommandGr(GroupCommand) :
     def __init__(self):
-        Command.__init__(self)        
-        self.requires(self.getRobot().sampSubsystem)
+        CommandGroup.__init__(self)        
         
-    def execute(self):
-        robot = self.getRobot()
-
-        self.getRobot().controller.readController()
-        speed = self.getRobot().controller.getSpeed()
+        self.addParallel(sampCommand())
+        self.addParallel(testCommand())
+        self.addParallel(instaCommand())
         
-        rotation = self.getRobot().controller.getLeftStick_x()
-        self.getRobot().driveTrain.engageDrive(speed, rotation)
-
-    # def initialize(self):
-        # 
-
-
-    # def end(self):
-        # 

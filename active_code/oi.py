@@ -9,16 +9,43 @@
 
 import wpilib
 from wpilib.command import Command
-from commands import sampCommand
-from commands import testCommand
+from commands import sampCommand, testCommand, instaCommand, defCommand
+from commands import seqCommandGr, paraCommandGr, combineCommandGr
+from active_code.robotConstants import XboxMap
+
 
 class oi():
     def __init__(self):
-        joy = wpilib.joystick(0)
+        self.controller = wpilib.XboxController(0)
+        #joystick = wpilib.joystick(0)
+        self.speedMultiplier = 0.9
 
-        button1 = wpilib.joystickButton(joy, 1)
-        button2 = wpilib.joystickButton(joy, 2)
 
-        button1.whenPressed(sampCommand())
-        button2.whenPressed(testCommand())
+        buttonA = wpilib.joystickButton(self.controller, XboxMap.BUTTONA)
+        buttonB = wpilib.joystickButton(self.controller, XboxMap.BUTTONB)
+        buttonX = wpilib.joystickButton(self.controller, XboxMap.BUTTONX)
+        buttonY = wpilib.joystickButton(self.controller, XboxMap.BUTTONY)
+        buttonStart = wpilib.joystickButton(self.controller, XboxMap.BUTTONSTART)
 
+        buttonA.whenPressed(sampCommand())
+        buttonB.whenPressed(testCommand())
+        buttonX.whenPressed(seqCommandGr())
+        buttonY.whenPressed(paraCommandGr())
+        buttonStart.whenPressed(combineCommandGr())
+
+        
+    def getLeftX(self) :
+        self.leftstick_x = self.controller.getX(XboxMap.KLEFT) * self.speedMultiplier
+        return self.leftstick_x
+
+    def getLeftY(self) :
+        self.leftstick_y = self.controller.getY(XboxMap.KLEFT) * self.speedMultiplier
+        return self.leftstick_y
+
+    def getRightX(self) :
+        self.rightstick_x = self.controller.getX(XboxMap.KRIGHT) 
+        return self.rightstick_x
+
+    def getRightY(self) :
+        self.rightstick_y = self.controller.getY(XboxMap.KRIGHT) 
+        return self.rightstick_y

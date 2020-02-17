@@ -1,12 +1,11 @@
-from wpilib.command import CommandGroup
+from wpilib.command import GroupCommand
 from commands import sampCommand, testCommand
 
-
-class seqCommandGr(CommandGroup):
+class combineCommandGr(GroupCommand) :
     def __init__(self):
         CommandGroup.__init__(self)        
         
         self.addSequential(sampCommand())
-        self.addSequential(testCommand())
+        self.addParallel(testCommand())
         self.addSequential(sampCommand())
         

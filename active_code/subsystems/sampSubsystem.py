@@ -14,8 +14,8 @@ class sampSubsystem(Subsystem):
       self.motor.setSafetyEnabled(True)
 
       #Show Motor status in NT
-      self.addChild("Motor", m_motor)   
-      self.endSwitch = true;
+      self.addChild("Motor", self.motor)   
+      self.endSwitch = True
 
     #set a default command for the Subsystem
     def initDefaultCommand(self) :
@@ -24,12 +24,17 @@ class sampSubsystem(Subsystem):
 
     # spin motor Forward
     def forward(self) :
-      speed = 1
+      speed = 1.0
       self.motor.set(speed)
 
     # spin motor in Reverse
     def reverse(self) : 
-      speed = -1
+      speed = -1.0
+      self.motor.set(speed)
+
+    # spin motor in Reverse
+    def stop(self) : 
+      speed = 0.0
       self.motor.set(speed)
 
     # signal endpoint

@@ -5,19 +5,28 @@ from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
 from commands import colorWheel as cW
-from commands import paraCommandGr as paraCommandGr
 
 import subsystems
 from subsystems.ColorSpinner import ColorSpinner
 #from adis16470 import ADIS16470_IMU
 #from adis16470 import ADIS16470CalibrationTime
 
+from subsystems.sampSubsystem import sampSubsystem
+from subsystems.testSubsystem import testSubsystem
+from commands.sampCommand import sampCommand
+from commands.testCommand import testCommand
+from commands import seqCommandGr as seqCommandGr
+from commands import paraCommandGr as paraCommandGr
+from commands import combineCommandGr as combineCommandGr
+
+
+
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
         self.controller = MasterController()
         #self.driveTrain = DriveTrain()
-        self.colorSpinner = ColorSpinner()
+        #self.colorSpinner = ColorSpinner()
 
         # Command.getRobot = lambda x=0: self
         #self.gyro = ADIS16470_IMU()
@@ -28,8 +37,10 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
 
+        self.sampSubsystem = sampSubsystem()
+        self.testSubsystem = testSubsystem()
         self.autonomousCommand = sampCommand()
-        self.oi = oi();
+        self.oi = oi()
 
 
     def robotPeriodic(self):
