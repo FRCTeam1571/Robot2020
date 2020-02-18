@@ -5,7 +5,7 @@ from wpilib import GyroBase
 from wpilib import AnalogGyro
 from wpilib import SmartDashboard
 from wpilib import SendableChooser
-from gyroscope import ADIS16470_IMU
+from adis16470 import ADIS16470_IMU
 
 kautoname_default = "Default"
 kautoname_custom = "My Auto"
