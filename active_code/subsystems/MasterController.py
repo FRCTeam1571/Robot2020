@@ -4,6 +4,12 @@ import ctre
 from wpilib.command import Subsystem
 from networktables import NetworkTables
 from wpilib import SmartDashboard
+from robotConstants import XboxMap
+from wpilib.command import JoystickButton
+
+
+from commands.mathRotate import mathRotate
+# from commands.drive import Drive
 
 #from commands import mathRotate
 
@@ -43,6 +49,16 @@ class MasterController(Subsystem):
         self.mathSpinButton = False
         self.colorSpinButton = False
 
+        #Buttons for command calling
+        self.mathCommandButton = JoystickButton(self.controller, XboxMap.BUTTONX)
+
+        #run math rotate when X is pressed
+        self.mathCommandButton.whenPressed(mathRotate())
+
+        #for Cole's future command
+        # self.colorSpinButton.WhenPressed(Colecommand())
+
+
 
     def readStick(self):
         #Get the values for the triggers and stick for basic driving
@@ -55,6 +71,10 @@ class MasterController(Subsystem):
     def checkDrive(self):
         if (self.trigRight > 0) or (self.trigLeft > 0):
             self.drive = drive.execute()
+        elif (self.trigRight == 0) and (self.trigLeft == 0):
+            pass
+        else:
+            print('uh oh stinky')
 
     def readSpeedMultiplier(self):
         # Get speed up and down buttons to increase or decrease the speed for the drivetrain

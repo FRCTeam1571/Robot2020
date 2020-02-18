@@ -6,10 +6,10 @@ from wpilib.command import WaitCommand
 
 class Drive(Command):
     def __init__(self):
-        Command.__init__(self)
+        Command.__init__(self, "Drive")
         # self.controller = MasterController()
         # self.driveTrain = DriveTrain()
-        self.requires(self.getRobot().driveTrain)
+        # self.requires(self.getRobot().driveTrain)
         
     def execute(self):
         robot = self.getRobot()
@@ -19,6 +19,9 @@ class Drive(Command):
         
         rotation = self.getRobot().controller.getLeftStick_x()
         self.getRobot().driveTrain.engageDrive(speed, rotation)
+
+    def isFinished(self):
+        return False
 
     # def initialize(self):
         # 
