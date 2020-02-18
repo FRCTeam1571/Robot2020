@@ -11,8 +11,8 @@ class SampSubsystem(Subsystem):
       self.motor = wpilib.NidecBrushless(0, 0)
       #self.motor = ctre.WPI_TalonSRX(0)
 
-      self.motor.setExpiration(0.1)
-      self.motor.setSafetyEnabled(True)
+      self.motor.setExpiration(2.5)
+      self.motor.setSafetyEnabled(False)
 
       #Show Motor status in NT
       self.addChild("Motor", self.motor)   

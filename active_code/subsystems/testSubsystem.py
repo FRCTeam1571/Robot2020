@@ -11,8 +11,8 @@ class TestSubsystem(Subsystem):
       self.spinSpeed = 0
       self.motor = ctre.WPI_TalonSRX(SubSystemPort.KMOTORPORT)
 
-      self.motor.setExpiration(0.1)
-      self.motor.setSafetyEnabled(True)
+      self.motor.setExpiration(2.5)
+      self.motor.setSafetyEnabled(False)
 
       #Show Motor status in NT
       self.addChild("Motor", self.motor)   
