@@ -1,12 +1,14 @@
 from wpilib.command import CommandGroup
-from commands import sampCommand, testCommand
+from commands.sampcommand import SampCommand
+from commands.testcommand import TestCommand
 
 
-class seqCommandGr(CommandGroup):
+class SeqCommandGr(CommandGroup):
     def __init__(self):
-        CommandGroup.__init__(self)        
-        
-        self.addSequential(sampCommand())
-        self.addSequential(testCommand())
-        self.addSequential(sampCommand())
+        CommandGroup.__init__(self, "SeqCommandGr")        
+        self.setInterruptible(True)
+
+        self.addSequential(SampCommand())
+        self.addSequential(TestCommand())
+        self.addSequential(SampCommand())
         

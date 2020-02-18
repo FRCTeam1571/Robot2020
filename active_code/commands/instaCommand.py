@@ -1,9 +1,11 @@
-from wpilib.command import instantCommand
+from wpilib.command import InstantCommand
 
-class instaCommand(instantCommand):
+class InstaCommand(InstantCommand):
     def __init__(self):
-        Command.__init__(self, "instaCommand")        
+        InstantCommand.__init__(self, "InstaCommand")        
         self.requires(self.getRobot().sampSubsystem)
+        self.setInterruptible(False)
+
         
     # This method sets up the command and is called immediately before the command is executed for the first time and 
     # every subsequent time it is started . Any initialization code should be here.
@@ -16,12 +18,9 @@ class instaCommand(instantCommand):
         robot = self.getRobot()
         robot.sampSubsystem.forward()
 
-    # Always returns false meaning this command never completes on it's own. 
-    # This command will be set as the default command for the subsystem. 
-    # Whenever the subsystem is not running another command, it will run this command. 
-    # If any other command is scheduled it will interrupt this command, then return to this command when the other command completes.
-    def isFinished(self) :
-        return False 
+    # Always returns True meaning this command completes after first execution. 
+    #def isFinished(self) :
+    #    return True 
 
     def end(self):
         robot = self.getRobot()
@@ -31,4 +30,3 @@ class instaCommand(instantCommand):
     # Make this return true when this Command no longer needs to run execute()
     def interrupted(self) :
         end()
-        return True 

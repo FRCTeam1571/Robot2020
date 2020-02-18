@@ -1,11 +1,12 @@
 import wpilib
 from wpilib.command import Subsystem
 import ctre 
-from robotConstants import SubSystemPort
+from robotconstants import SubSystemPort
 
-class testSubsystem(Subsystem):
+
+class TestSubsystem(Subsystem):
     def __init__(self):
-      Subsystem.__init__(self, "testSubsystem")
+      Subsystem.__init__(self, "TestSubsystem")
         
       self.spinSpeed = 0
       self.motor = ctre.WPI_TalonSRX(SubSystemPort.KMOTORPORT)
@@ -19,7 +20,7 @@ class testSubsystem(Subsystem):
 
     #set a default command for the Subsystem
     def initDefaultCommand(self) :
-      print("Default Command for testSubsystem")
+      print("Default Command for TestSubsystem")
       # self.setDefaultCommand(defCommand)
 
     # spin motor Forward

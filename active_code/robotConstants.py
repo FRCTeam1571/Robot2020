@@ -1,7 +1,7 @@
-from enum import Enum, auto
+from enum import IntEnum, auto
 import wpilib
 
-class XboxMap (Enum) :
+class XboxMap (IntEnum) :
     BUTTONA =  1
     BUTTONB = 2
     BUTTONX = 3
@@ -12,24 +12,24 @@ class XboxMap (Enum) :
     BUTTONSTART = 8
     BUTTONLEFTAXISPRESS = 9
     BUTTONRIGHTAXISPRESS = 10
-    KLEFT = wpilib.Xboxcontroller.Hand.kLeftHand
-    KRIGHT = wpilib.Xboxcontroller.Hand.kRightHand
+    KLEFT = wpilib.XboxController.Hand.kLeftHand
+    KRIGHT = wpilib.XboxController.Hand.kRightHand
 
-class DrivePort (Enum):
+class DrivePort (IntEnum):
     KLEFTMOTOR1PORT = 0
     KLEFTMOTOR2PORT= 1
     KRIGHTMOTOR1PORT = 2
     KRIGHTMOTOR2PORT = 3
 
 
-class SubSystemPort (Enum):
+class SubSystemPort (IntEnum):
     KMOTORPORT = 4
     KNIDECPORT = 0
 
-class AutoTimes (Enum):
+class AutoTimes (IntEnum):
     KAUTOTIMEOUTSECONDS = 12
     KAUTOMOVESECONDS = 10
 
-class OIPorts (Enum):
+class OIPorts (IntEnum):
     KDRIVERCONTROLLERPORT = auto()
 

@@ -1,10 +1,11 @@
 import wpilib
 from wpilib.command import Subsystem
 import ctre
+from commands.defcommand import DefCommand
 
-class sampSubsystem(Subsystem):
+class SampSubsystem(Subsystem):
     def __init__(self):
-      Subsystem.__init__(self, "sampSubsystem")
+      Subsystem.__init__(self, "SampSubsystem")
         
       self.spinSpeed = 0
       self.motor = wpilib.NidecBrushless(0, 0)
@@ -19,8 +20,8 @@ class sampSubsystem(Subsystem):
 
     #set a default command for the Subsystem
     def initDefaultCommand(self) :
-      print("Default Command for sampSubsystem")
-      # self.setDefaultCommand(defCommand)
+      print("Default Command for SampSubsystem")
+      self.setDefaultCommand(DefCommand())
 
     # spin motor Forward
     def forward(self) :

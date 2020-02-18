@@ -1,11 +1,13 @@
-from wpilib.command import GroupCommand
-from commands import sampCommand, testCommand
+from wpilib.command import CommandGroup
+from commands.sampcommand import SampCommand
+from commands.testcommand import TestCommand
 
-class combineCommandGr(GroupCommand) :
+class CombineCommandGr(CommandGroup) :
     def __init__(self):
-        CommandGroup.__init__(self)        
-        
-        self.addSequential(sampCommand())
-        self.addParallel(testCommand())
-        self.addSequential(sampCommand())
+        CommandGroup.__init__(self, "CombineCommandGr") 
+        self.setInterruptible(True)
+               
+        self.addSequential(SampCommand())
+        self.addParallel(TestCommand())
+        self.addSequential(SampCommand())
         

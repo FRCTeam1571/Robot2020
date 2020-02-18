@@ -9,29 +9,39 @@
 
 import wpilib
 from wpilib.command import Command
-from commands import sampCommand, testCommand, instaCommand, defCommand
-from commands import seqCommandGr, paraCommandGr, combineCommandGr
-from active_code.robotConstants import XboxMap
+from wpilib.command import JoystickButton
+# from active_code.commands import (sampcommand, testcommand, instacommand, defcommand)
+# from active_code.commands import (seqcommandgr, paracommandgr, combinecommandgr)
+#from commands import (SampCommand, TestCommand, InstaCommand, DefCommand)
+#from commands import (SeqCommandGr, ParaCommandGr, CombineCommandGr)
+from commands.sampcommand import SampCommand
+from commands.testcommand import TestCommand
+from commands.instacommand import InstaCommand
+from commands.defcommand import DefCommand
+from commands.seqcommandgr import SeqCommandGr
+from commands.paracommandgr import ParaCommandGr
+from commands.combinecommandgr import CombineCommandGr
+from robotconstants import XboxMap
 
 
-class oi():
+class OI():
     def __init__(self):
         self.controller = wpilib.XboxController(0)
         #joystick = wpilib.joystick(0)
         self.speedMultiplier = 0.9
 
 
-        buttonA = wpilib.joystickButton(self.controller, XboxMap.BUTTONA)
-        buttonB = wpilib.joystickButton(self.controller, XboxMap.BUTTONB)
-        buttonX = wpilib.joystickButton(self.controller, XboxMap.BUTTONX)
-        buttonY = wpilib.joystickButton(self.controller, XboxMap.BUTTONY)
-        buttonStart = wpilib.joystickButton(self.controller, XboxMap.BUTTONSTART)
+        buttonA = JoystickButton(self.controller, XboxMap.BUTTONA)
+        buttonB = JoystickButton(self.controller, XboxMap.BUTTONB)
+        buttonX = JoystickButton(self.controller, XboxMap.BUTTONX)
+        buttonY = JoystickButton(self.controller, XboxMap.BUTTONY)
+        buttonStart = JoystickButton(self.controller, XboxMap.BUTTONSTART)
 
-        buttonA.whenPressed(sampCommand())
-        buttonB.whenPressed(testCommand())
-        buttonX.whenPressed(seqCommandGr())
-        buttonY.whenPressed(paraCommandGr())
-        buttonStart.whenPressed(combineCommandGr())
+        buttonA.whenPressed(SampCommand())
+        buttonB.whenPressed(TestCommand())
+        buttonX.whenPressed(SeqCommandGr())
+        buttonY.whenPressed(ParaCommandGr())
+        buttonStart.whenPressed(CombineCommandGr())
 
         
     def getLeftX(self) :

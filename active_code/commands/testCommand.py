@@ -1,12 +1,14 @@
-from wpilib.command import timedCommand
+from wpilib.command import TimedCommand
 
 
-class testCommand(timedCommand):
+class TestCommand(TimedCommand):
     def __init__(self):
         timeInSec = 5
-        timedCommand.__init__(self, "testCommand", timeInSec)        
+        TimedCommand.__init__(self, "TestCommand", timeInSec)        
         self.requires(self.getRobot().testSubsystem)
-        
+        self.setInterruptible(True)
+
+
     # This method sets up the command and is called immediately before the command is executed for the first time and 
     # every subsequent time it is started . Any initialization code should be here.
     # Called just before the Command runs 

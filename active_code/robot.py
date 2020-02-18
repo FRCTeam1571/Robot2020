@@ -1,30 +1,31 @@
 import wpilib
 from wpilib.command import Command
 from commandbased import CommandBasedRobot
-from subsystems.DriveTrain import DriveTrain
-from subsystems.MasterController import MasterController
-from commands import drive
-from commands import colorWheel as cW
+# from subsystems.DriveTrain import DriveTrain
+# from subsystems.MasterController import MasterController
+# from commands import drive
+# from commands import colorWheel as cW
 
-import subsystems
-from subsystems.ColorSpinner import ColorSpinner
+# import subsystems
+#from subsystems.ColorSpinner import ColorSpinner
 #from adis16470 import ADIS16470_IMU
 #from adis16470 import ADIS16470CalibrationTime
 
-from subsystems.sampSubsystem import sampSubsystem
-from subsystems.testSubsystem import testSubsystem
-from commands.sampCommand import sampCommand
-from commands.testCommand import testCommand
-from commands import seqCommandGr as seqCommandGr
-from commands import paraCommandGr as paraCommandGr
-from commands import combineCommandGr as combineCommandGr
+from oi import OI
+from subsystems.sampsubsystem import SampSubsystem
+from subsystems.testsubsystem import TestSubsystem
+from commands.sampcommand import SampCommand
+from commands.testcommand import TestCommand
+from commands import seqcommandgr as SeqCommandGr
+from commands import paracommandgr as ParaCommandGr
+from commands import combinecommandgr as CombineCommandGr
 
 
 
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        self.controller = MasterController()
+        #self.controller = MasterController()
         #self.driveTrain = DriveTrain()
         #self.colorSpinner = ColorSpinner()
 
@@ -37,10 +38,10 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
 
-        self.sampSubsystem = sampSubsystem()
-        self.testSubsystem = testSubsystem()
-        self.autonomousCommand = sampCommand()
-        self.oi = oi()
+        self.sampSubsystem = SampSubsystem()
+        self.testSubsystem = TestSubsystem()
+        self.autonomousCommand = SampCommand()
+        self.oi = OI()
 
 
     def robotPeriodic(self):
@@ -55,14 +56,14 @@ class Robot(CommandBasedRobot):
     def autonomousInit(self):
         # add later
         print("Autonomous Mode")
-        if (self.autonomousCommand != null) : 
+        if (self.autonomousCommand != None) : 
             self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
         if self.timer.hasPeriodPassed(2) :
             print("Autonomous Run")
         
-        self.scheduler.addCommand(paraCommandGr()) 
+        self.scheduler.addCommand(ParaCommandGr()) 
         self.scheduler.run()
 
 
@@ -93,7 +94,7 @@ class Robot(CommandBasedRobot):
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
 
-         self.controller.readController()
+         #self.controller.readController()
 
         #call a command to run other commands after checking the controller
         # wheel = cW.colorWheel()
