@@ -11,26 +11,6 @@ from subsystems.ColorSpinner import ColorSpinner
 #from adis16470 import ADIS16470_IMU
 #from adis16470 import ADIS16470CalibrationTime
 
-<<<<<<< HEAD
-from oi import OI
-from subsystems.sampsubsystem import SampSubsystem
-from subsystems.testsubsystem import TestSubsystem
-from commands.sampcommand import SampCommand
-from commands.testcommand import TestCommand
-from commands.seqcommandgr import SeqCommandGr
-from commands.paracommandgr import ParaCommandGr
-from commands.combinecommandgr import CombineCommandGr
-=======
-# from oi import OI
-# from subsystems.sampsubsystem import SampSubsystem
-# from subsystems.testsubsystem import TestSubsystem
-# from commands.sampcommand import SampCommand
-# from commands.testcommand import TestCommand
-# from commands import seqcommandgr as SeqCommandGr
-# from commands import paracommandgr as ParaCommandGr
-# from commands import combinecommandgr as CombineCommandGr
->>>>>>> b68a509fa3c1578a3d0e79eee06b81bea17113f8
-
 
 
 class Robot(CommandBasedRobot):
@@ -50,10 +30,6 @@ class Robot(CommandBasedRobot):
         self.timer = wpilib.Timer() 
         self.oneShot = False
 
-        # self.sampSubsystem = SampSubsystem()
-        # self.testSubsystem = TestSubsystem()
-        # self.autonomousCommand = SampCommand()
-        # self.oi = OI()
 
     #----------------------------------------------------
     def robotPeriodic(self):
@@ -65,20 +41,7 @@ class Robot(CommandBasedRobot):
         elif self.timer.hasPeriodPassed(2.5) :
             self.timer.reset()
 
-    def autonomousInit(self):
-        # add later
-        print("Autonomous Mode")
-        if (self.autonomousCommand != None) : 
-            self.autonomousCommand.start()
-
-    def autonomousPeriodic(self):
-        if self.timer.hasPeriodPassed(2) :
-            print("Autonomous Run")
-        
-        # self.scheduler.addCommand(ParaCommandGr()) 
-        # self.scheduler.run()
-
-
+    #----------------------------------------------------
     def disabledInit(self):
         # add later
         print("Disabled Mode")
@@ -110,10 +73,10 @@ class Robot(CommandBasedRobot):
             print("Autonomous Run")
         
         if (self.oneShot == False) : 
-            self.scheduler.addCommand(ParaCommandGr()) 
+            #Scheduler.getInstance()addCommand(xxx) 
             self.oneShot = True
 
-        #self.scheduler.run()
+        # Scheduler.getInstance().run()
 
     #----------------------------------------------------
     def teleopInit(self):
@@ -141,6 +104,7 @@ class Robot(CommandBasedRobot):
 
 
     #----------------------------------------------------
+    
 #----------------------------------------------------
 if __name__ == "__main__":
     wpilib.run(Robot)

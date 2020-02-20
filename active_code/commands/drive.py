@@ -20,12 +20,6 @@ class Drive(Command):
         rotation = self.getRobot().controller.getLeftStick_x()
         self.getRobot().driveTrain.engageDrive(speed, rotation)
 
-<<<<<<< .merge_file_a32524
-=======
-    def isFinished(self):
-        return False
-
->>>>>>> .merge_file_a29852
     # def initialize(self):
         # 
 
