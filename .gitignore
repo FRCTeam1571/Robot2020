@@ -19,3 +19,5 @@ active_code/subsystems/__pycache__/MasterController.cpython-38.pyc
 .mypy_cache/*
 imgui.ini
 imgui.ini
+active_code/__pycache__/robot.cpython-37.pyc
+active_code/imgui.ini

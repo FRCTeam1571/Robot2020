@@ -29,6 +29,7 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
+        self.autonomousCommand = drive.Drive()
 
 
     #----------------------------------------------------

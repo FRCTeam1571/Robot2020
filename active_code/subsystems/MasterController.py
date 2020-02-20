@@ -4,8 +4,8 @@ import ctre
 from wpilib.command import Subsystem
 from networktables import NetworkTables
 from wpilib import SmartDashboard
-#import robotconstants
-#from robotconstants import XboxMap
+import robotconstants
+from robotconstants import XboxMap
 from wpilib.command import JoystickButton
 
 
@@ -51,7 +51,7 @@ class MasterController(Subsystem):
         self.colorSpinButton = False
 
         #Buttons for command calling
-        self.mathCommandButton = JoystickButton(self.controller, 1) # XboxMap.BUTTONX)
+        self.mathCommandButton = JoystickButton(self.controller, XboxMap.BUTTONX)
 
         #run math rotate when X is pressed
         self.mathCommandButton.whenPressed(mathRotate())
