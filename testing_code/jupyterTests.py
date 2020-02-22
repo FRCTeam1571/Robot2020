@@ -11,3 +11,10 @@ print(msg)
 msg = "Hello again"
 print(msg)
 
+#%%
+pip install --upgrade wpilib
+print("pip upgrade")
+pip list
+
+
+# %%

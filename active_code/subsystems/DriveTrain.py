@@ -2,7 +2,7 @@ import wpilib
 
 from wpilib.drive import DifferentialDrive
 from wpilib.command import Subsystem
-from commands import drive
+from commands.drive import Drive
 import ctre
 
 class DriveTrain(Subsystem):
@@ -24,15 +24,12 @@ class DriveTrain(Subsystem):
         self.drive = DifferentialDrive(self.left, self.right)
         self.drive.setExpiration(0.1) 
 
-        # 
+        # enable safety
         self.drive.setSafetyEnabled(False)
 
-    def initDefaultCommand(self):
-        # self.driveCommand = Drive.Drive()
-        try:        
-            self.setDefaultCommand(drive.Drive)
-        except TypeError:
-            print("Error for drive")
+        #as default use drive command
+        self.setDefaultCommand(Drive())
+
 
     def engageDrive(self, speed, rotation):
         self.drive.arcadeDrive(speed, rotation)
