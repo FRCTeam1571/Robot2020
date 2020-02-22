@@ -4,7 +4,7 @@ import ctre
 from wpilib.command import Subsystem
 from networktables import NetworkTables
 from wpilib import SmartDashboard
-import robotconstants
+import robotConstants
 from robotconstants import XboxMap
 from wpilib.command import JoystickButton
 
