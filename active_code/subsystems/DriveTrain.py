@@ -27,10 +27,8 @@ class DriveTrain(Subsystem):
         # enable safety
         self.drive.setSafetyEnabled(False)
 
-        #as default use drive command
-        self.setDefaultCommand(Drive())
-
-
     def engageDrive(self, speed, rotation):
         self.drive.arcadeDrive(speed, rotation)
         
+    def InitDefaultCommand(self):
+        setDefaultCommand(Drive())

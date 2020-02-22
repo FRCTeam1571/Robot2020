@@ -17,34 +17,14 @@ from commands.mathRotate import mathRotate
 class MasterController(Subsystem):
     def __init__(self):
         Subsystem.__init__(self, "MasterController")
-        self.previous = 0.0
-        self.controller = wpilib.XboxController(0)
 
         # self.controller.Button()
         # self.xButton = wpilib.Button()
         # wpilib.JoystickButton()
 
         # Sides
-        self.kLeft = self.controller.Hand.kLeftHand
-        self.kRight = self.controller.Hand.kRightHand
 
-        # Triggers
-        self.trigLeft = 0.0
-        self.trigRight = 0.0
-        self.speed = 0.0
-        self.speedMultiplier = 0.9
-
-        # Analog Sticks
-        self.leftstick_x = 0.0
-        self.leftstick_y = 0.0
-
-        #Speed Multiplier Button
-        self.speedUpButton = False
-        self.speedDownButton = False
-
-        # Half speed to max speed
-        self.speedArray = [0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-        self.speedIndex = 4
+     
 
         #Color rotate buttons
         self.mathSpinButton = False
@@ -59,15 +39,6 @@ class MasterController(Subsystem):
         #for Cole's future command
         # self.colorSpinButton.WhenPressed(Colecommand())
 
-
-
-    def readStick(self):
-        #Get the values for the triggers and stick for basic driving
-        self.trigLeft = self.controller.getTriggerAxis(self.kLeft)
-        self.trigRight = self.controller.getTriggerAxis(self.kRight)
-        self.speed = (self.trigRight - self.trigLeft) * self.speedMultiplier
-
-        self.leftstick_x = self.controller.getX(self.kLeft) * self.speedMultiplier
     
     def checkDrive(self):
         if (self.trigRight > 0) or (self.trigLeft > 0):

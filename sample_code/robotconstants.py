@@ -14,6 +14,8 @@ class XboxMap (IntEnum) :
     BUTTONRIGHTAXISPRESS = 10
     KLEFT = wpilib.XboxController.Hand.kLeftHand
     KRIGHT = wpilib.XboxController.Hand.kRightHand
+    LTRIGGER_AXIS = 2
+    RTRIGGER_AXIS = 3
 
 class DrivePort (IntEnum):
     KLEFTMOTOR1PORT = 0

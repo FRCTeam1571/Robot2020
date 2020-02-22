@@ -1,5 +1,6 @@
 import wpilib
 from wpilib.command import Command
+from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
@@ -58,7 +59,8 @@ class Robot(CommandBasedRobot):
         print("Test Mode")
 
     def testPeriodic(self):
-        # add later
+        Scheduler.getInstance().run()
+
         if self.timer.hasPeriodPassed(2) :
             print("Test Run")
 
@@ -70,14 +72,15 @@ class Robot(CommandBasedRobot):
             self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
+        Scheduler.getInstance().run()
+
         if self.timer.hasPeriodPassed(2) :
             print("Autonomous Run")
         
-        if (self.oneShot == False) : 
+        if (self.oneShot == False): 
             #Scheduler.getInstance()addCommand(xxx) 
             self.oneShot = True
 
-        # Scheduler.getInstance().run()
 
     #----------------------------------------------------
     def teleopInit(self):
@@ -85,6 +88,7 @@ class Robot(CommandBasedRobot):
         print("Teleop Mode")
 
     def teleopPeriodic(self):
+        Scheduler.getInstance().run()
         # add later
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")

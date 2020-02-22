@@ -10,9 +10,6 @@ class ColorSpinner(Subsystem):
         self.motor = wpilib.NidecBrushless(0, 0)# PMW and DIO pins
         self.motor.setExpiration(0.1)
 
-
-
     def engageMotor(self, spinSpeed = 0.5):
         self.motor.setSafetyEnabled(True)
         self.motor.set(spinSpeed)
-
