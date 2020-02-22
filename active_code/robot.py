@@ -5,7 +5,7 @@ from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
 from commands import colorWheel as cW
-from commands import paraCommandGr as paraCommandGr
+from commands import paraCommandGr 
 
 import subsystems
 from subsystems.ColorSpinner import ColorSpinner
@@ -82,7 +82,7 @@ class Robot(CommandBasedRobot):
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
 
-         self.controller.readController()
+        self.controller.readController()
 
         #call a command to run other commands after checking the controller
         # wheel = cW.colorWheel()
