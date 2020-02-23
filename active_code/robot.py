@@ -6,8 +6,7 @@ from subsystems.DriveTrain import DriveTrain
 from commands import drive
 from commands import colorWheel as cW
 
-from oi import OI as oi
-
+from oi import OI
 # import subsystems
 from subsystems.ColorSpinner import ColorSpinner
 #from adis16470 import ADIS16470_IMU
@@ -18,12 +17,13 @@ from subsystems.ColorSpinner import ColorSpinner
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        self.operInterface = oi()
-        self.controller = self.operInterface.controller
+        self.oi = OI()
+        self.controller = self.oi.controller
         self.driveTrain = DriveTrain()
         self.colorSpinner = ColorSpinner()
 
         Command.getRobot = lambda x=0: self
+        Command.getOi = lambda x=0: self.oi
         #self.gyro = ADIS16470_IMU()
         #self.m_imu.GetAngle()
 

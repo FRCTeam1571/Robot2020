@@ -16,6 +16,7 @@ from wpilib.command import JoystickButton
 #from commands import (SeqCommandGr, ParaCommandGr, CombineCommandGr)
 
 from robotConstants import XboxMap
+from commands import drive
 
 
 class OI():
@@ -82,7 +83,7 @@ class OI():
 
     def readRightTrig(self):
         self.trigRight = self.controller.getTriggerAxis(self.kRight)
-        return trigRight
+        return self.trigRight
 
     def getSpeed(self):
         self.speed = (self.trigRight - self.trigLeft) * self.speedMultiplier
