@@ -1,3 +1,4 @@
+import hal
 import wpilib
 from wpilib.command import Subsystem
 import ctre
@@ -18,10 +19,29 @@ class SampSubsystem(Subsystem):
       self.addChild("Motor", self.motor)   
       self.endSwitch = True
 
+      self.limitSwitch = wpilib.DigitalInput(1)
+      self.limitSwitchLow = wpilib.DigitalInput(2)
+      #m_simDevice = hal.SimDevice("LimitSwitch", 1)
+      #RobotBase.isReal()
+      #if m_simDevice :
+      #  self.limitSwitch.setSimDevice(1)
+
+      self.counter = wpilib.Counter(self.limitSwitch)
+
+      self.onLED = wpilib.DigitalOutput(3)
+
+
     #set a default command for the Subsystem
     def initDefaultCommand(self) :
       print("Default Command for SampSubsystem")
       self.setDefaultCommand(DefCommand())
+
+    def isSwitchSet(self):
+      return counter.Get() > 0
+
+    def initializeCounter(self):
+      counter.Reset()
+
 
     # spin motor Forward
     def forward(self) :
