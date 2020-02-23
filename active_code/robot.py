@@ -1,11 +1,12 @@
 import wpilib
 from wpilib.command import Command
+from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
-from subsystems.MasterController import MasterController
 from commands import drive
 from commands import colorWheel as cW
 
+from oi import OI
 # import subsystems
 from subsystems.ColorSpinner import ColorSpinner
 #from adis16470 import ADIS16470_IMU
@@ -16,21 +17,19 @@ from subsystems.ColorSpinner import ColorSpinner
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        self.controller = MasterController()
+        self.oi = OI()
+        self.controller = self.oi.controller
         self.driveTrain = DriveTrain()
         self.colorSpinner = ColorSpinner()
 
         Command.getRobot = lambda x=0: self
+        Command.getOi = lambda x=0: self.oi
         #self.gyro = ADIS16470_IMU()
         #self.m_imu.GetAngle()
-
-
-        Command.getRobot = lambda x=0: self
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
         self.autonomousCommand = drive.Drive()
-
 
     #----------------------------------------------------
     def robotPeriodic(self):
@@ -58,7 +57,8 @@ class Robot(CommandBasedRobot):
         print("Test Mode")
 
     def testPeriodic(self):
-        # add later
+        Scheduler.getInstance().run()
+
         if self.timer.hasPeriodPassed(2) :
             print("Test Run")
 
@@ -70,14 +70,15 @@ class Robot(CommandBasedRobot):
             self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
+        Scheduler.getInstance().run()
+
         if self.timer.hasPeriodPassed(2) :
             print("Autonomous Run")
         
-        if (self.oneShot == False) : 
+        if (self.oneShot == False): 
             #Scheduler.getInstance()addCommand(xxx) 
             self.oneShot = True
 
-        # Scheduler.getInstance().run()
 
     #----------------------------------------------------
     def teleopInit(self):
@@ -85,6 +86,7 @@ class Robot(CommandBasedRobot):
         print("Teleop Mode")
 
     def teleopPeriodic(self):
+        Scheduler.getInstance().run()
         # add later
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
