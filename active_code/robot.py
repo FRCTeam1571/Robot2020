@@ -3,9 +3,10 @@ from wpilib.command import Command
 from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
-from subsystems.MasterController import MasterController
 from commands import drive
 from commands import colorWheel as cW
+
+from oi import OI as oi
 
 # import subsystems
 from subsystems.ColorSpinner import ColorSpinner
@@ -17,7 +18,8 @@ from subsystems.ColorSpinner import ColorSpinner
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        self.controller = MasterController()
+        self.operInterface = oi()
+        self.controller = self.operInterface.controller
         self.driveTrain = DriveTrain()
         self.colorSpinner = ColorSpinner()
 
@@ -25,13 +27,9 @@ class Robot(CommandBasedRobot):
         #self.gyro = ADIS16470_IMU()
         #self.m_imu.GetAngle()
 
-
-        Command.getRobot = lambda x=0: self
-
         self.timer = wpilib.Timer() 
         self.oneShot = False
         self.autonomousCommand = drive.Drive()
-
 
     #----------------------------------------------------
     def robotPeriodic(self):

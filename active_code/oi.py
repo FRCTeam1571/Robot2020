@@ -14,20 +14,12 @@ from wpilib.command import JoystickButton
 # from active_code.commands import (seqcommandgr, paracommandgr, combinecommandgr)
 #from commands import (SampCommand, TestCommand, InstaCommand, DefCommand)
 #from commands import (SeqCommandGr, ParaCommandGr, CombineCommandGr)
-from commands.sampcommand import SampCommand
-from commands.testcommand import TestCommand
-from commands.instacommand import InstaCommand
-from commands.defcommand import DefCommand
-from commands.seqcommandgr import SeqCommandGr
-from commands.paracommandgr import ParaCommandGr
-from commands.combinecommandgr import CombineCommandGr
-from robotconstants import XboxMap
+
+from robotConstants import XboxMap
 
 
 class OI():
     def __init__(self):
-        super().__init__(self)
-
         self.controller = wpilib.XboxController(0)
         #joystick = wpilib.joystick(0)
         self.speedMultiplier = 0.9
@@ -59,11 +51,11 @@ class OI():
         buttonY = JoystickButton(self.controller, XboxMap.BUTTONY)
         buttonStart = JoystickButton(self.controller, XboxMap.BUTTONSTART)
 
-        buttonA.whenPressed(SampCommand())
-        buttonB.whenPressed(TestCommand())
-        buttonX.whenPressed(SeqCommandGr())
-        buttonY.whenPressed(ParaCommandGr())
-        buttonStart.whenPressed(CombineCommandGr())
+        # buttonA.whenPressed(SampCommand())
+        # buttonB.whenPressed(TestCommand())
+        # buttonX.whenPressed(SeqCommandGr())
+        # buttonY.whenPressed(ParaCommandGr())
+        # buttonStart.whenPressed(CombineCommandGr())
 
         
     def getLeftX(self) :

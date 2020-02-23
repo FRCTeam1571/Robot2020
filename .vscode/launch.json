@@ -34,6 +34,15 @@
                     "remoteRoot": "."
                 }
             ]
+        },
+        {
+            "name": "Python: Simulate Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["sim"],
+            "justMyCode": false
         }
     ]
 }

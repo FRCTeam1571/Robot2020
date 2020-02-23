@@ -18,9 +18,9 @@ class Drive(Command):
         # self.requires(self.getRobot().driveTrain)
 
     def move(self):
-        if oi.readRightTrig() != 0:
+        if oi.readRightTrig() != -1:
             self.speed = oi.getSpeed()
-        elif oi.readLeftTrig() != 0:
+        elif oi.readLeftTrig() != -1:
              self.speed = oi.getSpeed()
         else:
             self.speed = 0
@@ -39,7 +39,7 @@ class Drive(Command):
         return self.rotation
         
     def execute(self):
-        self.robot.DriveTrain.engageDrive(move(), turn())
+        self.robot.driveTrain.engageDrive(move(), turn())
 
     def isFinished(self):
         return False
