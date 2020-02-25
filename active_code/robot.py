@@ -27,7 +27,7 @@ class Robot(CommandBasedRobot):
         Command.getOi = lambda x=0: self.oi
         #self.gyro = ADIS16470_IMU()
         #self.m_imu.GetAngle()
-        self.gyro = Gyroscope()
+        # self.gyro = Gyroscope() Temporarily commented out
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
@@ -42,7 +42,7 @@ class Robot(CommandBasedRobot):
             print("Robot Periodic method run")
         elif self.timer.hasPeriodPassed(2.5) :
             self.timer.reset()
-        self.gyro.gyroControls()
+        # self.gyro.gyroControls() Temporarily commented out
 
     #----------------------------------------------------
     def disabledInit(self):
@@ -69,8 +69,8 @@ class Robot(CommandBasedRobot):
     def autonomousInit(self) :
         # add later
         print("Autonomous Mode")
-        if (self.autonomousCommand != None) : 
-            self.autonomousCommand.start()
+        # if (self.autonomousCommand != None) : 
+        #     self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
         Scheduler.getInstance().run()

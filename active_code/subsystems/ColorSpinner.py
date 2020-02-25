@@ -11,5 +11,5 @@ class ColorSpinner(Subsystem):
         self.motor.setExpiration(0.1)
 
     def engageMotor(self, spinSpeed = 0.5):
-        self.motor.setSafetyEnabled(True)
+        self.motor.setSafetyEnabled(False)
         self.motor.set(spinSpeed)

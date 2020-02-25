@@ -17,6 +17,8 @@ from wpilib.command import JoystickButton
 
 from robotConstants import XboxMap
 from commands import drive
+from commands.mathRotate import mathRotate
+
 
 
 class OI():
@@ -51,6 +53,8 @@ class OI():
         buttonX = JoystickButton(self.controller, XboxMap.BUTTONX)
         buttonY = JoystickButton(self.controller, XboxMap.BUTTONY)
         buttonStart = JoystickButton(self.controller, XboxMap.BUTTONSTART)
+
+        buttonX.whenPressed(mathRotate())
 
         # buttonA.whenPressed(SampCommand())
         # buttonB.whenPressed(TestCommand())

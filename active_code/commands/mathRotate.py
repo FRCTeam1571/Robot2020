@@ -21,12 +21,12 @@ class mathRotate(TimedCommand):
         # run = self.getRobot().controller.getXbutton()
 
         # if (run):
-        self.getRobot().ColorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
+        self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
     def engage(self):
         print("Rotating Motor")
 
-        self.getRobot().ColorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
+        self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
 
     # def isFinished(self):
@@ -34,7 +34,7 @@ class mathRotate(TimedCommand):
 
     #stop the motor when the command ends
     def end(self):
-        self.getRobot().ColorSpinner.engageMotor(0)
+        self.getRobot().colorSpinner.engageMotor(0)
 
 
 

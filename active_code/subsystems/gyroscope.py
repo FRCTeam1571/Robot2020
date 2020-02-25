@@ -36,7 +36,7 @@ class Gyroscope(Subsystem):
         self.m_autoChooser.addOption(kautoname_custom, kautoname_custom)
         
         self.m_yawChooser = wpilib.SendableChooser()
-        self.m_yawChooser.setDefaultOption(self.kYawDefault, self.kYawDefault)
+        self.m_yawChooser.setDefaultOption(self.kYaw_default, self.kYaw_default)
         self.m_yawchooser.addOption(kYaw_xaxis, kYaw_xAxis)
         self.m_yawchooser.addOption(kYaw_yAxis, kYaw_yAxis)
 

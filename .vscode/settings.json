@@ -6,8 +6,8 @@
         "**/.factorypath": true
     },
     //"python.pythonPath": "C:\\Users\\CalRo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
-    "python.pythonPath": "C:\\Users\\seth.urbach\\Documents\\Pythons\\frc2020\\Scripts\\python.exe",
-    "python.pythonPath": "C:\\Users\\CalRo\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    //"python.pythonPath": "C:\\Users\\FRC\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "python.pythonPath": "C:\\Users\\FRC\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.mypyEnabled": true
