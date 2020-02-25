@@ -4,6 +4,7 @@ from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
 from subsystems.MasterController import MasterController
 from commands import drive
+from subsystems.gyroscope import Gyroscope
 
 import subsystems
 from subsystems.ColorSpinner import ColorSpinner
@@ -13,14 +14,15 @@ from subsystems.ColorSpinner import ColorSpinner
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
     def robotInit(self):
-        self.controller = MasterController()
-        self.driveTrain = DriveTrain()
-        self.colorSpinner = ColorSpinner()
+        # self.controller = MasterController()
+        # self.driveTrain = DriveTrain()
+        # self.colorSpinner = ColorSpinner()
         #self.motor = wpilib.NidecBrushless(0, 0)
 
         # Command.getRobot = lambda x=0: self
         #self.gyro = ADIS16470_IMU()
         #self.m_imu.GetAngle()
+        self.gyro = Gyroscope()
 
 
         Command.getRobot = lambda x=0: self
@@ -36,6 +38,7 @@ class Robot(CommandBasedRobot):
             print("Periodic method")
         elif self.timer.hasPeriodPassed(2.5) :
             self.timer.reset()
+        self.gyro.gyroControls()
 
     def autonomousInit(self):
         # add later
