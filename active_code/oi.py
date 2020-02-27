@@ -19,8 +19,6 @@ from robotConstants import XboxMap
 from commands import drive
 from commands.mathRotate import mathRotate
 
-
-
 class OI():
     def __init__(self):
         self.controller = wpilib.XboxController(0)
@@ -62,7 +60,6 @@ class OI():
         # buttonY.whenPressed(ParaCommandGr())
         # buttonStart.whenPressed(CombineCommandGr())
 
-        
     def getLeftX(self) :
         self.leftstick_x = self.controller.getX(XboxMap.KLEFT) * self.speedMultiplier
         return self.leftstick_x

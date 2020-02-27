@@ -20,4 +20,5 @@ class SushiSpin(Command):
         return False
 
     def end(self):
-        self.robot.sushiWheel.engageMotor(0.0)
+        self.robot.SushiRotator.engageDrive(0.0)
+
