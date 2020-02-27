@@ -22,3 +22,4 @@ class SushiSpin(Command):
 
     def end(self):
         self.robot.SushiRotator.engageDrive(0.0)
+

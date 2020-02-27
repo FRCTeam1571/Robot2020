@@ -15,6 +15,7 @@ class SushiRotator(Subsystem):
     def initDefaultCommand(self):
         self.setDefaultCommand(SushiSpin())
 
+
 # Gate object with which to open a crevice for the balls to move from the bed in and out from
 class GateShot(Subsystem):
     def __init__(self):

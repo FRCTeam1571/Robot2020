@@ -10,10 +10,9 @@ from commands import sushi_act
 from oi import OI
 # import subsystems
 from subsystems.ColorSpinner import ColorSpinner
+from subsystems.sushi_wheel import SushiRotator
 #from adis16470 import ADIS16470_IMU
 #from adis16470 import ADIS16470CalibrationTime
-
-
 
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
@@ -68,13 +67,13 @@ class Robot(CommandBasedRobot):
     def autonomousInit(self) :
         # add later
         print("Autonomous Mode")
-        if (self.autonomousCommand != None) : 
+        if (self.autonomousCommand != None): 
             self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
         Scheduler.getInstance().run()
 
-        if self.timer.hasPeriodPassed(2) :
+        if self.timer.hasPeriodPassed(2):
             print("Autonomous Run")
         
         if (self.oneShot == False): 
