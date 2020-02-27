@@ -22,3 +22,5 @@ imgui.ini
 active_code/__pycache__/robot.cpython-37.pyc
 active_code/imgui.ini
 active_code/subsystems/__pycache__/DriveTrain.cpython-38.pyc
+*.pyc
+*.ini
