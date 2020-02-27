@@ -86,10 +86,8 @@ class Robot(CommandBasedRobot):
     def teleopPeriodic(self):
         Scheduler.getInstance().run()
         # add later
-        if self.timer.hasPeriodPassed(2) :
+        if self.timer.hasPeriodPassed(2):
             print("Teleop method")
-        else:
-            print("uh oh stinky haha poopy hooha poop funny")
 
          #self.controller.readController()
 

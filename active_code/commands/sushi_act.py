@@ -1,13 +1,15 @@
 from wpilib.command import Command
 
-class SushiSpin(Command):
+class Sushi_Act(Command):
     def __init__(self):
+        Command.__init__(self, "Sushi_Act")
         self.robot = self.getRobot()
-        self.sushiWheel = self.getSushiWheel()
+        #self.sushiWheel = self.getSushiWheel()
 
-        self.requires(self.getRobot().SushiRotator)
+        self.requires(self.getRobot().sushiWheel)
+        #self.requires(self.sushiWheel)
 
-        self.rpm = 0.5
+        self.rpm = 0.25
         self.toggle = False
     
     def rotateSushi(self):
@@ -21,4 +23,3 @@ class SushiSpin(Command):
 
     def end(self):
         self.robot.SushiRotator.engageDrive(0.0)
-
