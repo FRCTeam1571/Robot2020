@@ -8,12 +8,8 @@ from commands import colorWheel as cW
 from commands import sushi_act
 
 from oi import OI
-# import subsystems
 from subsystems.ColorSpinner import ColorSpinner
-#from adis16470 import ADIS16470_IMU
-#from adis16470 import ADIS16470CalibrationTime
-
-
+from subsystems.sushi_wheel import SushiRotator
 
 class Robot(CommandBasedRobot):
     ''' Statement of commands '''
@@ -26,8 +22,7 @@ class Robot(CommandBasedRobot):
 
         Command.getRobot = lambda x=0: self
         Command.getOi = lambda x=0: self.oi
-        #self.gyro = ADIS16470_IMU()
-        #self.m_imu.GetAngle()
+        Command.getSushiWheel = lambda x=0: self.sushiWheel
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
@@ -81,7 +76,6 @@ class Robot(CommandBasedRobot):
             #Scheduler.getInstance()addCommand(xxx) 
             self.oneShot = True
 
-
     #----------------------------------------------------
     def teleopInit(self):
         # add later
@@ -92,6 +86,8 @@ class Robot(CommandBasedRobot):
         # add later
         if self.timer.hasPeriodPassed(2) :
             print("Teleop method")
+        else:
+            print("uh oh stinky haha poopy hooha poop funny")
 
          #self.controller.readController()
 

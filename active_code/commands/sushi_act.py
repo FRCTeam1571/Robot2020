@@ -1,10 +1,9 @@
-from subsystems import sushi_wheel as sw
 from wpilib.command import Command
 
 class SushiSpin(Command):
     def __init__(self):
-        self.robot = getRobot()
-        self.sushi_wheel = sw.SushiRotator()
+        self.robot = self.getRobot()
+        self.sushiWheel = self.getSushiWheel()
 
         self.requires(self.getRobot().SushiRotator)
 
@@ -15,10 +14,10 @@ class SushiSpin(Command):
         print('placeholder')
 
     def execute(self):
-        self.robot.SushiRotator.engageDrive(self.rpm)
+        self.robot.sushiWheel.engageMotor(self.rpm)
 
     def isFinished(self):
         return False
 
     def end(self):
-        self.robot.SushiRotator.engageDrive(0.0)
+        self.robot.sushiWheel.engageMotor(0.0)
