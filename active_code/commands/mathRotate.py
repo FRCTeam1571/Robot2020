@@ -1,42 +1,21 @@
 import wpilib
+from wpilib.command import Command
 
-from wpilib.command import TimedCommand
+from subsystems.ColorSpinner import ColorSpinner
 
-# from subsystems import MasterController
-from subsystems import ColorSpinner
+class SpinColorWheel(Command):
+    def __init__(self):
+        Command.__init__(self, "SpinColorWheel")
 
-class mathRotate(TimedCommand):
-    def __init__(self, mathRotate = "mathRotate", timeInSeconds = 6.0):
+        # self.robot = self.getRobot()
 
-        TimedCommand.__init__(self, mathRotate, timeInSeconds)
-
-        # self.requires(self.getRobot().ColorSpinner)
-        """RPM = 475 so send 1 amp on the PWM
-        Run for 6 seconds"""
-
-    def initialize(self):
-        #move to new command
-        
-        # self.getRobot().controller.readController()
-        # run = self.getRobot().controller.getXbutton()
-
-        # if (run):
-        self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
+        self.motor = ColorSpinner()
 
     def execute(self):
-        print("Rotating Motor")
-
-        self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
-
-
-    # def isFinished(self):
-    #     return False
-
-
-    #stop the motor when the command ends
+        self.motor.engageMotor()
+    
+    def isFinished(self):
+        return False
+    
     def end(self):
-        self.getRobot().colorSpinner.engageMotor(0)
-
-
-
-        
+        self.motor.engageMotor(0)

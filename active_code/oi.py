@@ -1,4 +1,3 @@
-
 # Commands can run when the associated button is pressed by using whenPressed().
 # Commands can run when a button is released by using whenReleased() instead of whenPressed().
 # Commands can run continuously while the button is depressed by calling whileHeld().
@@ -6,18 +5,16 @@
 # A command can be canceled when a button is pressed using cancelWhenPressed().
 # Arbitrary conditions use the Trigger class to run a command.
 # Triggers and Buttons are usually polled every 20ms or whenever the scheduler is called.
-
 import wpilib
 from wpilib.command import Command
 from wpilib.command import JoystickButton
-# from active_code.commands import (sampcommand, testcommand, instacommand, defcommand)
-# from active_code.commands import (seqcommandgr, paracommandgr, combinecommandgr)
-#from commands import (SampCommand, TestCommand, InstaCommand, DefCommand)
-#from commands import (SeqCommandGr, ParaCommandGr, CombineCommandGr)
 
 from robotConstants import XboxMap
 from commands import drive
-from commands.mathRotate import mathRotate
+# from commands.mathRotate import mathRotate
+from commands.pneumatics_act import SolenoidControl
+from commands.shootcell import ShootCell
+from commands.mathRotate import SpinColorWheel
 
 class OI():
     def __init__(self):
@@ -52,12 +49,12 @@ class OI():
         buttonY = JoystickButton(self.controller, XboxMap.BUTTONY)
         buttonStart = JoystickButton(self.controller, XboxMap.BUTTONSTART)
 
-        buttonX.whenPressed(mathRotate())
+        # buttonX.whenPressed(mathRotate())
 
-        # buttonA.whenPressed(SampCommand())
+        buttonA.toggleWhenPressed(SpinColorWheel())
         # buttonB.whenPressed(TestCommand())
-        # buttonX.whenPressed(SeqCommandGr())
-        # buttonY.whenPressed(ParaCommandGr())
+        buttonX.whileHeld(ShootCell())
+        buttonY.toggleWhenPressed(SolenoidControl())
         # buttonStart.whenPressed(CombineCommandGr())
 
     def getLeftX(self) :
@@ -77,22 +74,29 @@ class OI():
         return self.rightstick_y
 
     '''--------------------------------------------------------'''
+    def mapSpeed(self, val, in_min, in_max, out_min, out_max):
+        return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     def readLeftTrig(self):
         self.trigLeft = self.controller.getTriggerAxis(self.kLeft)
-        return self.trigLeft
+        return self.mapSpeed(self.trigLeft, -1.0, 1.0, 0.0, 1.0)
 
     def readRightTrig(self):
         self.trigRight = self.controller.getTriggerAxis(self.kRight)
-        return self.trigRight
+
+        return (self.mapSpeed(self.trigRight, -1.0, 1.0, 0.0, 1.0) * -1.0)
 
     def getSpeed(self):
-        self.speed = (self.trigRight - self.trigLeft) * self.speedMultiplier
+        self.speed = (self.trigRisght - self.trigLeft) * self.speedMultiplier
         return self.speed
 
     def readLeftStickX(self):
-        self.leftstick_x = self.controller.getX(self.kLeft) * self.speedMultiplier
+        self.leftstick_x = self.controller.getX(self.kLeft) * -self.speedMultiplier
         return self.leftstick_x
+
+    def readLeftStickY(self):
+        self.leftstick_y = self.controller.getY(self.kLeft) * self.speedMultiplier
+        return self.leftstick_y
 
     def readSpeedMultiplier(self):
         # Get speed up and down buttons to increase or decrease the speed for the drivetrain

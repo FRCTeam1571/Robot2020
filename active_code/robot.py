@@ -4,8 +4,9 @@ from wpilib.command import Scheduler
 from commandbased import CommandBasedRobot
 from subsystems.DriveTrain import DriveTrain
 from commands import drive
-from commands import colorWheel as cW
+# from commands import colorwheel as cW
 from commands import sushi_act
+from commands import autonomous
 
 from oi import OI
 from subsystems.ColorSpinner import ColorSpinner
@@ -28,7 +29,7 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
-        self.autonomousCommand = drive.Drive()
+        self.autonomousCommand = autonomous.AutonomousCommand()
 
     #----------------------------------------------------
     def robotPeriodic(self):
@@ -45,10 +46,10 @@ class Robot(CommandBasedRobot):
         # add later
         print("Disabled Mode")
 
-    def disabledPeriodic(self):
+    # def disabledPeriodic(self):
         # add later
-        if self.timer.hasPeriodPassed(2) :
-            print("Disabled Run")
+        # if self.timer.hasPeriodPassed(2) :
+        #     print("Disabled Run")
 
     #----------------------------------------------------
     def testInit(self):
@@ -65,8 +66,7 @@ class Robot(CommandBasedRobot):
     def autonomousInit(self) :
         # add later
         print("Autonomous Mode")
-        if (self.autonomousCommand != None): 
-            self.autonomousCommand.start()
+        # self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
         Scheduler.getInstance().run()
@@ -77,6 +77,9 @@ class Robot(CommandBasedRobot):
         if (self.oneShot == False): 
             #Scheduler.getInstance()addCommand(xxx) 
             self.oneShot = True
+        
+        # if self.autonomousCommand.isRunning == False:
+        #     print('Auto is interrupted')
 
     #----------------------------------------------------
     def teleopInit(self):

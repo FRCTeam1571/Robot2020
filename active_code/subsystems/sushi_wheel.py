@@ -10,16 +10,11 @@ class SushiRotator(Subsystem):
         Subsystem.__init__(self, 'SushiRotator')
         # Motor controller object
         self.sushi_motor = WPI_TalonSRX(1)
+        
     
     def engageMotor(self, speed):
-        self.sushi_motor.setSafetyEnabled(True)
+        self.sushi_motor.setSafetyEnabled(False)
         self.sushi_motor.set(speed)
 
     def initDefaultCommand(self):
         self.setDefaultCommand(Sushi_Act())
-
-
-# Gate object with which to open a crevice for the balls to move from the bed in and out from
-class GateShot(Subsystem):
-    def __init__(self):
-        self.gate_shot = WPI_TalonSRX(hash(0))

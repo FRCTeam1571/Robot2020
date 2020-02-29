@@ -18,14 +18,18 @@ class Drive(Command):
         # self.controller = MasterController()
         # self.driveTrain = DriveTrain()
         self.requires(self.getRobot().driveTrain)
+        self.setInterruptible(True)
 
     def move(self):
-        if self.oi.readRightTrig() != -1:
-            self.speed = self.oi.getSpeed()
-        elif self.oi.readLeftTrig() != -1:
-             self.speed = self.oi.getSpeed()
-        else:
-            self.speed = 0
+        # if self.oi.readRightTrig() > -1:
+        #     self.speed = self.oi.readRightTrig()
+        # elif self.oi.readLeftTrig() > -1:
+        #      self.speed = self.oi.readLeftTrig()
+        # else:
+        #     self.speed = 0
+        self.speed = self.oi.readLeftStickY()
+        
+        print(self.speed)
         return self.speed
        
     def turn(self):
@@ -47,4 +51,4 @@ class Drive(Command):
         return False
     
     def end(self):
-        self.robot.DriveTrain.engageDrive(0, 0)
+        self.robot.driveTrain.engageDrive(0, 0)

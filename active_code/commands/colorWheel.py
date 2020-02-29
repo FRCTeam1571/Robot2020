@@ -1,23 +1,26 @@
 # import wpilib
+# import ctre
 
 # from wpilib.command import Command
 # # from subsystems.MasterController import MasterController
-# from commands import mathRotate
-# from commands import readColor
+# # from commands import mathRotate
+# # from commands import readColor
+# # from subsystems.ColorSpinner import ColorSpinner
 
-# class colorWheel(Command):
+# class ColorWheel(Command):
 #     def __init__(self):
-#         Command.__init__(self)
+#         Command.__init__(self, "ColorWheel")
+
+#         self.robot = self.getRobot()
+#         self.oi = self.getOi()
+#         # self.motor = ColorSpinner().motor
+#         self.motor = ctre.WPI_TalonSRX(6)
 
 #     def execute(self):
-#         robot = self.getRobot()
+#         self.motor.engageMotor()
 
-#         mathPressed = self.getRobot().controller.getXButton()
-
-#         colorPressed = self.getRobot().controller.getYButton()
-
-#         if (mathPressed):
-#             print("Rotation")
-#             mathRotate.mathRotate
-
-
+#     def isFinished(self):
+#         return False
+    
+#     def end(self):
+#         self.motor.engageMotor(0.0)

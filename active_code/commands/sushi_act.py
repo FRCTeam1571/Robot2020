@@ -22,4 +22,4 @@ class Sushi_Act(Command):
         return False
 
     def end(self):
-        self.robot.SushiRotator.engageDrive(0.0)
+        self.robot.sushiWheel.engageMotor(0.0)
