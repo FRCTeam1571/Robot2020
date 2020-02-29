@@ -29,7 +29,8 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
-        # self.autonomousCommand = autonomous.AutonomousCommand()
+        #self.autonomousCommand = autonomous.AutonomousCommand()
+        wpilib.CameraServer.launch("vision.py:main")
 
     #----------------------------------------------------
     def robotPeriodic(self):
