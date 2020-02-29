@@ -7,23 +7,30 @@ class ShootCell(Command):
 
         # Class variables
         self.gate = GateShot_Subsystem()
+        self.orientation = 0
+
+    def masterGateControl(self):
+        if (self.gate.readSushiSwitch() == True) and (self.gate.readCloseSwitch() == True):
+            self.openGate()
+        elif (self.gate.readOpenSwitch() == True):
+            self.closeGate()
+        else:
+            print('error')
+    
+    def openGate(self):
+        self.gate.engageMotor(.35)
+        self.orientation = 1
+
+
+    def closeGate(self):
+        self.gate.engageMotor(-.35)
+        self.orientation = 0
     
     def execute(self):
-        self.pressedSwitch = self.gate.readOpenSwitch()
-
-        if self.pressedSwitch == True:
-            self.gate.engageMotor(.35)
-            print('Switch not pressed')
-        else:
-            print('Switch pressed')
+        self.masterGateControl()
 
     def isFinished(self):
-        self.pressedSwitch = self.gate.readOpenSwitch()
-
-        if self.pressedSwitch == False:
-            return True
-        else:
-            return False
+        return False
     
     def end(self):
         self.gate.disengageMotor()

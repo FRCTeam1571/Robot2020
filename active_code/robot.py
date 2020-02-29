@@ -29,7 +29,7 @@ class Robot(CommandBasedRobot):
 
         self.timer = wpilib.Timer() 
         self.oneShot = False
-        self.autonomousCommand = autonomous.AutonomousCommand()
+        # self.autonomousCommand = autonomous.AutonomousCommand()
 
     #----------------------------------------------------
     def robotPeriodic(self):
@@ -69,14 +69,14 @@ class Robot(CommandBasedRobot):
         # self.autonomousCommand.start()
 
     def autonomousPeriodic(self):
-        Scheduler.getInstance().run()
-
-        if self.timer.hasPeriodPassed(2):
+        if self.timer.hasPeriodPassed(5):
             print("Autonomous Run")
+        else:
+            self.driveTrain.engageDrive(.4, 0)
         
-        if (self.oneShot == False): 
-            #Scheduler.getInstance()addCommand(xxx) 
-            self.oneShot = True
+        # if (self.oneShot == False): 
+        #     #Scheduler.getInstance()addCommand(xxx) 
+        #     self.oneShot = True
         
         # if self.autonomousCommand.isRunning == False:
         #     print('Auto is interrupted')

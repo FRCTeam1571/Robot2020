@@ -10,10 +10,12 @@ class GateShot_Subsystem(Subsystem):
         Subsystem.__init__(self, "GateShot")
         self.gate_shot = WPI_TalonSRX(0)
 
+        # Close
+        self.switchClose = wpilib.DigitalInput(0)
         # Open
         self.switchOpen = wpilib.DigitalInput(1)
-         # Close
-        self.switchClose = wpilib.DigitalInput(0)
+        # Switch beneath sushi wheel
+        self.switchSushi = wpilib.DigitalInput(2)
 
     def engageMotor(self, spinSpeed):
         self.gate_shot.set(spinSpeed)
@@ -27,3 +29,6 @@ class GateShot_Subsystem(Subsystem):
 
     def readOpenSwitch(self):
         return self.switchOpen.get()
+    
+    def readSushiSwitch(self):
+        return self.switchSushi.get()

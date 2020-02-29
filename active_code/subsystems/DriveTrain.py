@@ -29,7 +29,7 @@ class DriveTrain(Subsystem):
 
     def engageDrive(self, speed, rotation):
         self.drive.arcadeDrive(speed, rotation)
-        print(speed)
+        #print(speed)
         
     def initDefaultCommand(self):
         self.setDefaultCommand(Drive())
