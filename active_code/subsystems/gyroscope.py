@@ -37,7 +37,7 @@ class Gyroscope(Subsystem):
         
         self.m_yawChooser = wpilib.SendableChooser()
         self.m_yawChooser.setDefaultOption(self.kYaw_default, self.kYaw_default)
-        self.m_yawchooser.addOption(kYaw_xaxis, kYaw_xAxis)
+        # self.m_yawchooser.addOption(kYaw_xaxis, kYaw_xAxis)
         self.m_yawchooser.addOption(kYaw_yAxis, kYaw_yAxis)
 
         # SmartDashBoard Statistics
@@ -52,7 +52,7 @@ class Gyroscope(Subsystem):
             # wpilib.SmartDashboard.putNumber("Y Comp Angle", self.m_imu.getYComplimentaryAngle())
             wpilib.SmartDashboard.putNumber("Angle", self.gyro.GetAngle())
 
-            self.m_yawSelected = kYawDefault
+            # self.m_yawSelected = kYawDefault
             wpilib.SmartDashboard.putNumber("Yaw/Z Angle", self.m_imu.getAngle())
             wpilib.SmartDashboard.putNumber("X Comp Angle", self.m_imu.getXComplimentaryAngle())
             wpilib.SmartDashboard.putNumber("Y Comp Angle", self.m_imu.getYComplimentaryAngle())

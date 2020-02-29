@@ -23,14 +23,14 @@ class mathRotate(TimedCommand):
         # if (run):
         self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
-    def engage(self):
+    def execute(self):
         print("Rotating Motor")
 
         self.getRobot().colorSpinner.engageMotor(0.5) #Give it the percent speed to run at, default = 0.5
 
 
-    def isFinished(self):
-        return False
+    # def isFinished(self):
+    #     return False
 
 
     #stop the motor when the command ends
