@@ -1,5 +1,4 @@
 import wpilib
-
 from wpilib.command import Subsystem
 from wpilib import DoubleSolenoid
 from wpilib import Compressor
@@ -12,7 +11,9 @@ class Pneumatics(Subsystem):
         # self.compressor.setClosedLoopControl(True)
 
         self.dsolenoid = wpilib.DoubleSolenoid(0, 1)
-        self.dsolenoid.Value.kOff
+        # self.offvalve = self.dsolenoid.Value.kOff
+        self.offvalve = wpilib.DoubleSolenoid.Value.kOff
+        self.dsolenoid.set(self.offvalve)
 
     def controlSolenoid(self, direction):
         self.dsolenoid.set(direction)
